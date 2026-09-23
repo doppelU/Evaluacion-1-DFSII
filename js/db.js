@@ -2,16 +2,16 @@
    CIRCUITO - Capa de datos (localStorage / sessionStorage)
    No hay backend: todo se persiste localmente en el navegador.
    ============================================================ */
-
+ 
 const DB_KEYS = {
   USUARIOS: "circuito_usuarios",
   PRODUCTOS: "circuito_productos",
   SESION: "circuito_sesion",
   CARRITO: "circuito_carrito",
 };
-
+ 
 /* ---------- Seed inicial ---------- */
-
+ 
 function seedUsuarios() {
   return [
     {
@@ -30,7 +30,7 @@ function seedUsuarios() {
     },
   ];
 }
-
+ 
 function seedProductos() {
   return [
     {
@@ -40,7 +40,7 @@ function seedProductos() {
       precio: 54990,
       stock: 14,
       categoria: "Perifericos",
-      imagen: "https://picsum.photos/seed/circuito-kb/600/400",
+      imagen: "https://images.pexels.com/photos/7915211/pexels-photo-7915211.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     },
     {
       id: 2,
@@ -49,7 +49,7 @@ function seedProductos() {
       precio: 32990,
       stock: 22,
       categoria: "Perifericos",
-      imagen: "https://picsum.photos/seed/circuito-mouse/600/400",
+      imagen: "https://images.pexels.com/photos/17821147/pexels-photo-17821147.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     },
     {
       id: 3,
@@ -58,7 +58,7 @@ function seedProductos() {
       precio: 219990,
       stock: 7,
       categoria: "Pantallas",
-      imagen: "https://picsum.photos/seed/circuito-monitor/600/400",
+      imagen: "https://images.pexels.com/photos/7031697/pexels-photo-7031697.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     },
     {
       id: 4,
@@ -67,7 +67,7 @@ function seedProductos() {
       precio: 69990,
       stock: 18,
       categoria: "Audio",
-      imagen: "https://picsum.photos/seed/circuito-audio/600/400",
+      imagen: "https://images.pexels.com/photos/7772547/pexels-photo-7772547.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     },
     {
       id: 5,
@@ -76,7 +76,7 @@ function seedProductos() {
       precio: 74990,
       stock: 30,
       categoria: "Componentes",
-      imagen: "https://picsum.photos/seed/circuito-ssd/600/400",
+      imagen: "https://images.pexels.com/photos/2942361/pexels-photo-2942361.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     },
     {
       id: 6,
@@ -85,7 +85,7 @@ function seedProductos() {
       precio: 45990,
       stock: 11,
       categoria: "Perifericos",
-      imagen: "https://picsum.photos/seed/circuito-webcam/600/400",
+      imagen: "https://images.pexels.com/photos/7172701/pexels-photo-7172701.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     },
     {
       id: 7,
@@ -94,7 +94,7 @@ function seedProductos() {
       precio: 27990,
       stock: 25,
       categoria: "Accesorios",
-      imagen: "https://picsum.photos/seed/circuito-hub/600/400",
+      imagen: "https://images.pexels.com/photos/4195404/pexels-photo-4195404.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     },
     {
       id: 8,
@@ -103,13 +103,13 @@ function seedProductos() {
       precio: 159990,
       stock: 5,
       categoria: "Mobiliario",
-      imagen: "https://picsum.photos/seed/circuito-silla/600/400",
+      imagen: "https://images.pexels.com/photos/8546651/pexels-photo-8546651.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
     },
   ];
 }
-
+ 
 /* ---------- Inicialización ---------- */
-
+ 
 function initDB() {
   if (!localStorage.getItem(DB_KEYS.USUARIOS)) {
     localStorage.setItem(DB_KEYS.USUARIOS, JSON.stringify(seedUsuarios()));
@@ -118,9 +118,9 @@ function initDB() {
     localStorage.setItem(DB_KEYS.PRODUCTOS, JSON.stringify(seedProductos()));
   }
 }
-
+ 
 /* ---------- Helpers genéricos ---------- */
-
+ 
 function getUsuarios() {
   return JSON.parse(localStorage.getItem(DB_KEYS.USUARIOS)) || [];
 }
@@ -133,13 +133,13 @@ function getProductos() {
 function saveProductos(productos) {
   localStorage.setItem(DB_KEYS.PRODUCTOS, JSON.stringify(productos));
 }
-
+ 
 function nextId(lista) {
   return lista.length ? Math.max(...lista.map((i) => i.id)) + 1 : 1;
 }
-
+ 
 /* ---------- Sesión ---------- */
-
+ 
 function getSesion() {
   return JSON.parse(sessionStorage.getItem(DB_KEYS.SESION));
 }
@@ -154,7 +154,7 @@ function cerrarSesion() {
   sessionStorage.removeItem(DB_KEYS.CARRITO);
   window.location.href = "login.html";
 }
-
+ 
 /* Protege una página: exige sesión y, opcionalmente, un rol específico */
 function protegerPagina(rolRequerido) {
   const sesion = getSesion();
@@ -168,9 +168,9 @@ function protegerPagina(rolRequerido) {
   }
   return sesion;
 }
-
+ 
 /* ---------- Carrito (por sesión de navegador) ---------- */
-
+ 
 function getCarrito() {
   return JSON.parse(sessionStorage.getItem(DB_KEYS.CARRITO)) || [];
 }
@@ -190,9 +190,9 @@ function agregarAlCarrito(productoId, cantidad = 1) {
 function contarItemsCarrito() {
   return getCarrito().reduce((acc, i) => acc + i.cantidad, 0);
 }
-
+ 
 function formatoCLP(valor) {
   return valor.toLocaleString("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
 }
-
+ 
 initDB();
