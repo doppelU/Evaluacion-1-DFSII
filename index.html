@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>CIRCUITO</title>
+<script src="js/db.js"></script>
+<script>
+  const sesion = JSON.parse(sessionStorage.getItem("circuito_sesion"));
+  window.location.href = sesion ? "catalogo.html" : "login.html";
+</script>
+</head>
+<body></body>
+</html>

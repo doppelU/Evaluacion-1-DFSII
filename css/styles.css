@@ -1,0 +1,254 @@
+/* ============================================================
+   CIRCUITO — Design tokens
+   Paleta: base grafito oscuro + acento azul eléctrico + verde
+   circuito para precios/stock. Tipografía: Space Grotesk (display)
+   + Inter (texto). Layout con acentos tipo "trazo de circuito".
+   ============================================================ */
+
+:root {
+  --ct-bg: #14161a;
+  --ct-surface: #1b1e24;
+  --ct-surface-raised: #22262e;
+  --ct-border: #2c313a;
+  --ct-text: #edeef0;
+  --ct-text-muted: #9aa0a8;
+  --ct-accent: #4f8ef7;
+  --ct-accent-strong: #7dabf9;
+  --ct-success: #2bb673;
+  --ct-danger: #e5484d;
+
+  --bs-body-bg: var(--ct-bg);
+  --bs-body-color: var(--ct-text);
+}
+
+* {
+  scrollbar-color: var(--ct-border) var(--ct-bg);
+}
+
+body {
+  background-color: var(--ct-bg);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(79, 142, 247, 0.09) 1px, transparent 0);
+  background-size: 28px 28px;
+  color: var(--ct-text);
+  font-family: "Inter", system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+h1, h2, h3, h4, .brand, .nav-link, .btn, .stat-number {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+}
+
+/* ---------- Navbar ---------- */
+
+.navbar-circuito {
+  background-color: rgba(19, 21, 26, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--ct-border);
+}
+
+.brand {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  font-size: 1.25rem;
+  color: var(--ct-text) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-mark {
+  color: var(--ct-accent);
+}
+
+.navbar-circuito .nav-link {
+  color: var(--ct-text-muted) !important;
+  font-size: 0.95rem;
+}
+.navbar-circuito .nav-link.active,
+.navbar-circuito .nav-link:hover {
+  color: var(--ct-text) !important;
+}
+
+.badge-rol {
+  border: 1px solid var(--ct-accent);
+  color: var(--ct-accent-strong);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.75rem;
+}
+
+/* ---------- Cards de producto ---------- */
+
+.card-producto {
+  background-color: var(--ct-surface);
+  border: 1px solid var(--ct-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  height: 100%;
+}
+.card-producto:hover {
+  border-color: var(--ct-accent);
+  transform: translateY(-2px);
+}
+.card-producto img {
+  height: 170px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--ct-border);
+}
+.card-producto .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.card-producto .precio {
+  color: var(--ct-success);
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+.card-producto .stock-bajo {
+  color: var(--ct-danger);
+}
+
+.categoria-pill {
+  align-self: flex-start;
+  font-size: 0.72rem;
+  text-transform: none;
+  border: 1px solid var(--ct-border);
+  color: var(--ct-text-muted);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+/* ---------- Botones ---------- */
+
+.btn-accent {
+  background-color: var(--ct-accent);
+  border-color: var(--ct-accent);
+  color: #0c1220;
+  font-weight: 600;
+}
+.btn-accent:hover {
+  background-color: var(--ct-accent-strong);
+  border-color: var(--ct-accent-strong);
+  color: #0c1220;
+}
+.btn-outline-accent {
+  border-color: var(--ct-accent);
+  color: var(--ct-accent-strong);
+}
+.btn-outline-accent:hover {
+  background-color: var(--ct-accent);
+  color: #0c1220;
+}
+
+/* ---------- Formularios ---------- */
+
+.form-control,
+.form-select {
+  background-color: var(--ct-surface-raised);
+  border: 1px solid var(--ct-border);
+  color: var(--ct-text);
+}
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--ct-surface-raised);
+  color: var(--ct-text);
+  border-color: var(--ct-accent);
+  box-shadow: 0 0 0 0.2rem rgba(79, 142, 247, 0.2);
+}
+.form-control::placeholder {
+  color: var(--ct-text-muted);
+}
+label {
+  color: var(--ct-text-muted);
+  font-size: 0.9rem;
+}
+
+.auth-card {
+  background-color: var(--ct-surface);
+  border: 1px solid var(--ct-border);
+  border-radius: 12px;
+  max-width: 420px;
+  width: 100%;
+}
+
+/* ---------- Carrusel ---------- */
+
+.carousel-circuito {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--ct-border);
+}
+.carousel-circuito img {
+  height: 320px;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+.carousel-caption-circuito {
+  position: absolute;
+  left: 2rem;
+  bottom: 2rem;
+  text-align: left;
+  max-width: 60%;
+}
+.carousel-caption-circuito .eyebrow {
+  color: var(--ct-accent-strong);
+  font-size: 0.85rem;
+}
+
+/* ---------- Tablas (mantenedor) ---------- */
+
+.table-circuito {
+  --bs-table-bg: var(--ct-surface);
+  --bs-table-color: var(--ct-text);
+  --bs-table-border-color: var(--ct-border);
+}
+.table-circuito thead {
+  color: var(--ct-text-muted);
+  font-size: 0.82rem;
+}
+
+.nav-pills-circuito .nav-link {
+  color: var(--ct-text-muted);
+  border-radius: 8px;
+}
+.nav-pills-circuito .nav-link.active {
+  background-color: var(--ct-accent);
+  color: #0c1220;
+}
+
+/* ---------- Footer ---------- */
+
+.footer-circuito {
+  background-color: var(--ct-surface);
+  border-top: 1px solid var(--ct-border);
+  color: var(--ct-text-muted);
+  font-size: 0.85rem;
+}
+.footer-circuito a {
+  color: var(--ct-text-muted);
+  text-decoration: none;
+}
+.footer-circuito a:hover {
+  color: var(--ct-accent-strong);
+}
+
+.modal-content {
+  background-color: var(--ct-surface);
+  border: 1px solid var(--ct-border);
+  color: var(--ct-text);
+}
+
+.toast {
+  background-color: var(--ct-surface-raised);
+  border: 1px solid var(--ct-border);
+  color: var(--ct-text);
+}
